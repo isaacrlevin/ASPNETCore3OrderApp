@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>dotnet-WorkerService1-C165CA6E-341F-49A0-883B-0AA5E94EC6F3</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Protos\ordershandler.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0-preview8.19405.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.9.1" />
+    <PackageReference Include="Grpc.Net.Client" Version="0.1.22-pre2" />
+    <PackageReference Include="Grpc.Tools" Version="1.22.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrderApp.Shared\OrderApp.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\ordershandler.proto" ClientBaseType="LiteClientBase" GrpcServices="Client" />
+  </ItemGroup>
+</Project>
