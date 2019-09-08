@@ -54,7 +54,7 @@ namespace OrderApp.App
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<OrdersService>();
-                endpoints.MapBlazorHub<App>(selector: "app");
+                endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
         }

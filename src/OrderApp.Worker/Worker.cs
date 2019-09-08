@@ -30,10 +30,11 @@ namespace OrdersHandler.Worker
                 _logger.LogInformation($"Checking orders at {DateTimeOffset.Now}");
                 try
                 {
-                    var httpClient = new HttpClient();
+                    //var httpClient = new HttpClient();
                     // The port number(5001) must match the port of the gRPC server.
-                    httpClient.BaseAddress = new Uri("https://localhost:5001");
-                    var client = GrpcClient.Create<OrdersHandler.OrdersManager.OrdersManagerClient>(httpClient);
+                    //httpClient.BaseAddress = new Uri("https://localhost:5001");
+                    var channel = GrpcChannel.ForAddress("https://localhost:5001");
+                    var client = new OrdersHandler.OrdersManager.OrdersManagerClient(channel);
                     OrderRequest request = new OrderRequest();
                     OrderReply result = await client.GetNewOrderAsync(request);
                     if (result.OrderId != 0)
